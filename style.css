@@ -1,0 +1,141 @@
+body {
+  font-family: "Roboto", Arial, sans-serif;
+  padding: 20px;
+  background-color: #f4f4f9;
+  color: #333333;
+  margin: 0;
+}
+
+.light-mode {
+  background-color: #f4f4f9;
+  color: #333333;
+}
+
+.dark-mode {
+  background-color: #1e1e2f;
+  color: #ffffff;
+}
+
+#editor {
+  height: calc(100vh - 80px);
+  width: 100%;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+button {
+  padding: 8px 15px;
+  margin-left: 10px;
+  border: none;
+  border-radius: 4px;
+  background-color: #0078d7;
+  color: white;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+button:hover {
+  background-color: #005bb5;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+button:active {
+  transform: scale(0.98);
+}
+
+select,
+input[type="text"],
+input[type="number"] {
+  padding: 8px;
+  margin-left: 10px;
+  border: 1px solid #cccccc;
+  border-radius: 4px;
+  font-size: 14px;
+  color: #333333;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+select:hover,
+input[type="text"]:hover,
+input[type="number"]:hover {
+  border-color: #0078d7;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+#settings-panel {
+  width: 300px;
+  top: 20px;
+  left: 20px;
+  background-color: #ffffff;
+  border: 1px solid #dddddd;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  padding: 15px;
+  z-index: 1000;
+}
+
+#settings-header {
+  background-color: #0078d7;
+  color: white;
+  padding: 10px;
+  border-radius: 8px 8px 0 0;
+  cursor: move;
+}
+
+h2 {
+  font-size: 18px;
+  color: #333333;
+  margin-bottom: 10px;
+}
+
+label {
+  font-size: 14px;
+  margin-right: 10px;
+  color: #555555;
+}
+
+#close-settings {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  position: absolute;
+  right: 10px;
+  top: 10px;
+}
+
+#close-settings:hover {
+  color: #ff5757;
+}
+
+#settings-button {
+  margin-left: auto;
+  background-color: #444444;
+  color: white;
+}
+
+#settings-button:hover {
+  background-color: #333333;
+}
+
+#tabBar button {
+  padding: 8px 15px;
+  margin-left: 10px;
+  border: none;
+  border-radius: 4px;
+  background-color: #007bff;
+  color: white;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+#tabBar button:hover {
+  background-color: #008FB3;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+#tabBar button:active {
+  transform: scale(0.98);
+}

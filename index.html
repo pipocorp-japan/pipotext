@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>pipoText | pipo.corp</title>
+    <script src="https://cdn.jsdelivr.net/npm/ace-builds@1.4.14/src-noconflict/ace.js"></script>
+    <link
+      rel="icon"
+      href="https://cdn.glitch.global/8b637bbe-2f2e-4a84-a9c8-7a7c8cb7f2c6/logo.png?v=1734502121069"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <script src="app.js" defer></script>
+  </head>
+  <body class="light-mode">
+    <button id="toggle-btn" title="ツールバーの表示と非表示を切り替える">◀︎</button>
+    <div
+      id="header"
+      style="
+        display: flex;
+        align-items: center;
+        height: 45px;
+        overflow-y: auto;
+        display: inline;
+        white-space: nowrap;
+      "
+    >
+        <img
+          style="
+            height: 30px; /* 画像の高さを親要素に合わせる */
+            width: auto; /* アスペクト比を保つ */
+            object-fit: cover; /* 必要に応じて画像の切り抜きを調整 */
+          "
+          src="https://cdn.glitch.global/8b637bbe-2f2e-4a84-a9c8-7a7c8cb7f2c6/logo.png?v=1734502121069"
+          alt="pipoText"
+          title="pipoText"
+          onclick="alert('pipoText\nバージョン1.0.0')"
+         />
+      <select title="言語を選択" id="languageSelector">
+        <optgroup label="プログラミング言語">
+          <option value="javascript">JavaScript</option>
+          <option value="python">Python</option>
+          <option value="kotlin">Kotlin</option>
+          <option value="c_cpp">C/C++</option>
+          <option value="csharp">C#</option>
+          <option value="java">Java</option>
+          <option value="scala">Scala</option>
+          <option value="swift">Swift</option>
+          <option value="ruby">Ruby</option>
+          <option value="php">PHP</option>
+          <option value="go">Go</option>
+          <option value="haskell">Haskell</option>
+          <option value="perl">Perl</option>
+          <option value="lua">Lua</option>
+          <option value="typescript">TypeScript</option>
+          <option value="dart">Dart</option>
+          <option value="groovy">Groovy</option>
+          <option value="rust">Rust</option>
+        </optgroup>
+        <optgroup label="データ形式">
+          <option value="text" selected>Text</option>
+          <option value="csv">CSV</option>
+          <option value="json">JSON</option>
+          <option value="yaml">YAML</option>
+          <option value="xml">XML</option>
+          <option value="markdown">Markdown</option>
+        </optgroup>
+        <optgroup label="シェルスクリプト">
+          <option value="bash">Bash</option>
+          <option value="zsh">Zsh</option>
+          <option value="shell">Shell</option>
+        </optgroup>
+        <optgroup label="データベース">
+          <option value="sql">SQL</option>
+        </optgroup>
+        <optgroup label="マークアップ言語">
+          <option value="html">HTML</option>
+          <option value="xml">XML</option>
+          <option value="latex">LaTeX</option>
+          <option value="asciidoc">AsciiDoc</option>
+        </optgroup>
+        <optgroup label="スタイルシート">
+          <option value="css">CSS</option>
+          <option value="scss">SCSS</option>
+          <option value="less">LESS</option>
+        </optgroup>
+        <optgroup label="構成ファイル">
+          <option value="ini">INI</option>
+          <option value="apache_conf">Apache Conf</option>
+          <option value="dockerfile">Dockerfile</option>
+          <option value="makefile">Makefile</option>
+        </optgroup>
+        <optgroup label="スクリプト言語">
+          <option value="coffeescript">CoffeeScript</option>
+          <option value="batchfile">Batchfile</option>
+          <option value="elixir">Elixir</option>
+          <option value="erlang">Erlang</option>
+        </optgroup>
+        <optgroup label="その他">
+          <option value="diff">Diff</option>
+          <option value="dot">Dot</option>
+          <option value="abap">ABAP</option>
+          <option value="abc">ABC</option>
+          <option value="actionsript">ActionScript</option>
+          <option value="ada">Ada</option>
+          <option value="assembly_x86">Assembly x86</option>
+          <option value="autohotkey">AutoHotkey</option>
+          <option value="clojure">Clojure</option>
+          <option value="cobol">COBOL</option>
+          <option value="coldfusion">ColdFusion</option>
+          <option value="crystal">Crystal</option>
+          <option value="elm">Elm</option>
+          <option value="fortran">Fortran</option>
+          <option value="graphqlschema">GraphQL</option>
+          <option value="handlebars">Handlebars</option>
+          <option value="haxe">Haxe</option>
+          <option value="jsp">JSP</option>
+          <option value="jsx">JSX</option>
+          <option value="matlab">MATLAB</option>
+          <option value="objectivec">Objective-C</option>
+          <option value="sass">Sass</option>
+        </optgroup>
+      </select>
+      <input type="text" title="ファイル名" id="fileName" />
+      <span title="拡張子" id="fileExtension">.txt</span>
+      <button title="このボタンをクリックして保存" id="saveButton">💾</button>
+      <button title="テーマ切り替え" id="toggle-theme">🌙</button>
+      <input
+        type="number"
+        id="fontSizeInput"
+        title="フォントサイズ(単位:px)"
+        value="14"
+        min="1"
+        max="500"
+        step="0.5"
+      />
+      <button id="openFileButton" title="ファイルを開く">📂</button>
+      <input
+        type="file"
+        id="fileInput"
+        accept=".txt,.csv,.json,.sh,.zsh,.sql,.js,.py,.kt,.html,.md"
+        style="display: none"
+      />
+      &nbsp;&nbsp;&nbsp;&nbsp;
+      <button title="設定" id="settings-button">⚙️</button>
+    </div>
+    <div
+      id="tabBar"
+      style="white-space: nowrap; display: flex; align-items: center"
+    >
+      <button id="addTabButton" title="新しいタブを追加" style="margin-right: 3px">＋</button>
+      <div
+        id="tabsContainer"
+        style="display: inline-flex; flex-grow: 1; overflow-y: auto"
+      ></div>
+    </div>
+    <div id="editor"></div>
+
+    <div
+      id="settings-panel"
+      style="display: none; position: absolute; border-radius: 4px"
+    >
+      <div
+        id="settings-header"
+        style="cursor: move; background: #dddddd; padding: 5px"
+      >
+        <button id="close-settings">×</button>
+        外見設定
+      </div>
+      <label for="themeSelector">テーマ:</label>
+      <select id="themeSelector">
+        <optgroup label="ダーク">
+          <option value="ace/theme/monokai">Monokai</option>
+          <option value="ace/theme/solarized_dark">Solarized Dark</option>
+          <option value="ace/theme/twilight">Twilight</option>
+          <option value="ace/theme/chrome">Chrome</option>
+          <option value="ace/theme/textmate">Textmate</option>
+          <option value="ace/theme/tomorrow_night">Tomorrow Night</option>
+          <option value="ace/theme/tomorrow_night_blue">
+            Tomorrow Night Blue
+          </option>
+          <option value="ace/theme/tomorrow_night_bright">
+            Tomorrow Night Bright
+          </option>
+          <option value="ace/theme/tomorrow_night_eighties">
+            Tomorrow Night Eighties
+          </option>
+          <option value="ace/theme/dracula">Dracula</option>
+          <option value="ace/theme/vibrant_ink">Vibrant Ink</option>
+          <option value="ace/theme/ambiance">Ambiance</option>
+          <option value="ace/theme/ambiance_mobile">Ambiance Mobile</option>
+          <option value="ace/theme/cobalt">Cobalt</option>
+          <option value="ace/theme/cobalt2">Cobalt2</option>
+          <option value="ace/theme/eclipse">Eclipse</option>
+          <option value="ace/theme/idle_fingers">Idle Fingers</option>
+          <option value="ace/theme/kr_theme">KR Theme</option>
+          <option value="ace/theme/merbivore">Merbivore</option>
+          <option value="ace/theme/merbivore_soft">Merbivore Soft</option>
+          <option value="ace/theme/monokai_extended">Monokai Extended</option>
+          <option value="ace/theme/nord_dark">Nord Dark</option>
+          <option value="ace/theme/pastel_on_dark">Pastel on Dark</option>
+          <option value="ace/theme/slate">Slate</option>
+          <option value="ace/theme/nord">Nord</option>
+          <option value="ace/theme/github_dark">GitHub Dark</option>
+        </optgroup>
+        <optgroup value="ライト">
+          <option value="ace/theme/solarized_light">Solarized Light</option>
+          <option value="ace/theme/github">GitHub</option>
+          <option value="ace/theme/xcode">Xcode</option>
+          <option value="ace/theme/tomorrow">Tomorrow</option>
+          <option value="ace/theme/clouds">Clouds</option>
+          <option value="ace/theme/clouds_midnight">Clouds Midnight</option>
+        </optgroup></select
+      ><br />
+
+      <label for="indentSize">インデント幅:</label>
+      <input type="number" id="indentSize" value="2" min="2" max="8" /><br />
+    </div>
+  </body>
+</html>
